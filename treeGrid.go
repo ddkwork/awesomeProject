@@ -287,7 +287,7 @@ func addNode(model *qt6.QStandardItemModel, treeView *qt6.QTreeView, nameLineEdi
 		nameLineEdit.Clear()
 		descriptionLineEdit.Clear()
 	} else {
-		qt6.QMessageBox_Warning2(nil, "警告", "名称和描述不能为空", qt6.QMessageBox__NoButton, qt6.QMessageBox__NoButton)
+		qt6.QMessageBox_Warning2(nil, "警告", "名称和描述不能为空", int(qt6.QMessageBox__NoButton), int(qt6.QMessageBox__NoButton))
 	}
 }
 
@@ -307,10 +307,10 @@ func editNode(model *qt6.QStandardItemModel, treeView *qt6.QTreeView, nameLineEd
 			nameLineEdit.Clear()
 			descriptionLineEdit.Clear()
 		} else {
-			qt6.QMessageBox_Warning2(nil, "警告", "名称和描述不能为空", qt6.QMessageBox__NoButton, qt6.QMessageBox__NoButton)
+			qt6.QMessageBox_Warning2(nil, "警告", "名称和描述不能为空", int(qt6.QMessageBox__NoButton), int(qt6.QMessageBox__NoButton))
 		}
 	} else {
-		qt6.QMessageBox_Warning2(nil, "警告", "请选择一个项进行编辑", qt6.QMessageBox__NoButton, qt6.QMessageBox__NoButton)
+		qt6.QMessageBox_Warning2(nil, "警告", "请选择一个项进行编辑", int(qt6.QMessageBox__NoButton), int(qt6.QMessageBox__NoButton))
 	}
 }
 
@@ -322,21 +322,21 @@ func deleteNode(model *qt6.QStandardItemModel, treeView *qt6.QTreeView) {
 			model.RemoveRow(index.Row())
 		}
 	} else {
-		qt6.QMessageBox_Warning2(nil, "警告", "请选择一个项进行删除", qt6.QMessageBox__NoButton, qt6.QMessageBox__NoButton)
+		qt6.QMessageBox_Warning2(nil, "警告", "请选择一个项进行删除", int(qt6.QMessageBox__NoButton), int(qt6.QMessageBox__NoButton))
 	}
 }
 
 func loadDataFromJSON(model *qt6.QStandardItemModel, filePath string) {
 	data, err := ioutil.ReadFile(filePath)
 	if err != nil {
-		qt6.QMessageBox_Warning2(nil, "错误", "无法读取文件", qt6.QMessageBox__NoButton, qt6.QMessageBox__NoButton)
+		qt6.QMessageBox_Warning2(nil, "错误", "无法读取文件", int(qt6.QMessageBox__NoButton), int(qt6.QMessageBox__NoButton))
 		return
 	}
 
 	var treeData TreeData
 	err = json.Unmarshal(data, &treeData)
 	if err != nil {
-		qt6.QMessageBox_Warning2(nil, "错误", "无法解析JSON文件", qt6.QMessageBox__NoButton, qt6.QMessageBox__NoButton)
+		qt6.QMessageBox_Warning2(nil, "错误", "无法解析JSON文件", int(qt6.QMessageBox__NoButton), int(qt6.QMessageBox__NoButton))
 		return
 	}
 
@@ -366,13 +366,13 @@ func saveDataToJSON(model *qt6.QStandardItemModel, filePath string) {
 	treeData := TreeData{Nodes: nodes}
 	data, err := json.MarshalIndent(treeData, "", "    ")
 	if err != nil {
-		qt6.QMessageBox_Warning2(nil, "错误", "无法转换为JSON", qt6.QMessageBox__NoButton, qt6.QMessageBox__NoButton)
+		qt6.QMessageBox_Warning2(nil, "错误", "无法转换为JSON", int(qt6.QMessageBox__NoButton), int(qt6.QMessageBox__NoButton))
 		return
 	}
 
 	err = ioutil.WriteFile(filePath, data, 0644)
 	if err != nil {
-		qt6.QMessageBox_Warning2(nil, "错误", "无法保存文件", qt6.QMessageBox__NoButton, qt6.QMessageBox__NoButton)
+		qt6.QMessageBox_Warning2(nil, "错误", "无法保存文件", int(qt6.QMessageBox__NoButton), int(qt6.QMessageBox__NoButton))
 		return
 	}
 
