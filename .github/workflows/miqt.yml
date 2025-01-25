@@ -29,11 +29,11 @@ jobs:
 
       - name: Build Qt linking stub
         run: |
-          docker run --rm -v $(pwd):/src -w /src miqt/android:latest cmd/android-stub-gen/android-stub-gen.sh my_go_app.so AndroidMain android-build/libs/arm64-v8a/libRealAppName_arm64-v8a.so
+          docker run --rm -v $(pwd):/src -w /src miqt/android:latest chmod +x cmd/android-stub-gen/android-stub-gen.sh my_go_app.so AndroidMain android-build/libs/arm64-v8a/libRealAppName_arm64-v8a.so
 
       - name: Build androiddeployqt configuration file
         run: |
-          docker run --rm -v $(pwd):/src -w /src miqt/android:latest cmd/android-mktemplate/android-mktemplate.sh RealAppName deployment-settings.json
+          docker run --rm -v $(pwd):/src -w /src miqt/android:latest chmod +x cmd/android-mktemplate/android-mktemplate.sh RealAppName deployment-settings.json
 
       - name: Build Android package
         run: |
